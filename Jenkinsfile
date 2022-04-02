@@ -15,7 +15,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-		sh 'rsync -av . pipelinetestemag@pipelinetest.emaginelc.com:/public_html'
+		sh 'rsync -av . pipeline:/home2/pipelinetestemag/public_html'
             }
         }
     }
