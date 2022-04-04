@@ -15,7 +15,7 @@ pipeline {
         stage('Deploy') {
             steps {
           	sshagent(['pipeline']) {
-    		sh 'rsync -vrzhe . pipeline:/home2/pipelinetestemag/public_html'
+    		sh 'rsync -vrzhe . pipelinetestemag@pipelinetest.emaginelc.com:/home2/pipelinetestemag/public_html'
 	}
                 echo 'Deploying....'
             }
