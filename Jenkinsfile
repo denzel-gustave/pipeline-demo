@@ -14,8 +14,10 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+          	sshagent(['pipeline']) {
+    		sh 'rsync -vrzhe . pipeline:/home2/pipelinetestemag/public_html'
+	}
                 echo 'Deploying....'
-		sh 'rsync -vrzhe "ssh -o StrictHostKeyChecking=No pipelinetestemag@pipelinetest.emaginelc.com" . pipelinetestemag@pipelinetest.emaginelc.com:/home2/pipelinetestemag/public_html'
             }
         }
     }
