@@ -14,9 +14,14 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-          	sshagent(['pipeline']) {
-    		sh 'ls -al'
-	}
+          	sshagent(credentials: ['pipeline']) {
+           	  sh '''
+               		 [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
+               		 ssh-keyscan -t rsa,dsa pipelinetest.emaginelc.com >> ~/.ssh/known_hosts
+               		 ssh pipelinetestemag@pipelinetest.emaginelc.com
+			 ls -al
+            '''
+          }
                 echo 'Deploying....'
             }
         }
