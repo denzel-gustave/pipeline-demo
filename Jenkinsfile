@@ -19,7 +19,7 @@ pipeline {
                		 [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
                		 ssh-keyscan -t rsa,dsa pipelinetest.emaginelc.com >> ~/.ssh/known_hosts
                		 ssh -t pipelinetestemag@pipelinetest.emaginelc.com 'ls -al'
-                     rsync -vrzhe "ssh -o StrictHostKeyChecking=No" --exclude .git/ . pipelinetestemag@pipelinetest.emaginelc.com:/home2/pipelinetestemag/public_html
+                     rsync -vrzhe "ssh -o StrictHostKeyChecking=No" --exclude .git/ --exclude Jenkinsfile . pipelinetestemag@pipelinetest.emaginelc.com:/home2/pipelinetestemag/public_html
             '''
           }
                 echo 'Deploying....'
